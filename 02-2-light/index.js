@@ -37,7 +37,6 @@ scene.add(directionalLight);
 
 function render() {
     mesh.rotateY(0.01);
-    //render the scene from our camera view and show it in the <canvas>
     renderer.render(scene, camera);
     requestAnimationFrame(render);
 }

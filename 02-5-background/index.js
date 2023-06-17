@@ -1,11 +1,22 @@
-//import 'everything' with the alias 'THREE' from our import map 'three' (from index.html)
-//using a module enable us to use import syntax
+
 import * as THREE from 'three';
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+// loader for an HDR image
+import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 
 //create a scene
 let scene = new THREE.Scene();
-scene.background = new THREE.Color(0xff00ff);
+
+//change background
+//approach 1- change background color
+//scene.background = new THREE.Color(0xff00ff);
+
+//approach 2 - load an HDR image as a "skybox" image
+let loader = new RGBELoader();
+loader.load("./little_paris_eiffel_tower_4k.hdr", (texture) => {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    scene.background = texture;
+});
 
 //create a camera
 let aspectRatio = window.innerWidth / window.innerHeight;
@@ -25,21 +36,10 @@ let controls = new OrbitControls(camera, renderer.domElement);
 //create a box
 let geometry = new THREE.BoxGeometry(1, 1, 1);
 //material other than MeshBasicMaterial is subject to light
-let material = new THREE.MeshLambertMaterial({ color: 'white' });
+let material = new THREE.MeshBasicMaterial({ color: 'blue' });
 let mesh = new THREE.Mesh(geometry, material);
 //add the sphere to the scene
 scene.add(mesh);
-
-
-//add lights to the scene
-//ambient light
-let ambientLight = new THREE.AmbientLight(0xaaffee, 0.5);
-scene.add(ambientLight);
-
-//directionalLight 
-let directionalLight = new THREE.DirectionalLight(0x0000ff, 0.5);
-directionalLight.position.set(3, 1, 5)
-scene.add(directionalLight);
 
 function render() {
     //mesh.rotateY(0.01);

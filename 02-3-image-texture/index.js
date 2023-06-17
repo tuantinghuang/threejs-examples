@@ -21,7 +21,7 @@ let textureLoader = new THREE.TextureLoader();
 let texture = textureLoader.load("https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/1920px-Cat_August_2010-4.jpg");
 //let texture = textureLoader.load("./cat.jpeg");
 
-// change the texture parameters if you like!
+// texture parameters
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
 texture.repeat.set(1, 1);
