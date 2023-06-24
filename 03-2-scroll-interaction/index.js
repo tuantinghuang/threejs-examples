@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls'
 
 let scene, renderer, camera;
 let cubes = [];
@@ -49,12 +48,32 @@ function init() {
     create a scroll base interaction
    
     */
+    let prevScrollY = -1;
 
     document.addEventListener('scroll', (event) => {
-        console.log(event)
+
+        //rotate the cubes
         for (let i = 0; i < cubes.length; i++) {
             cubes[i].rotation.x += 0.01;
         }
+
+        //move the camera based on scroll events
+        if (prevScrollY !== window.scrollY) {
+            console.log(prevScrollY);
+            console.log(window.scrollY);
+
+            //if scrolling down, zoom in the camera
+            if (window.scrollY > prevScrollY) {
+                camera.position.z -= 0.1;
+            }
+
+            //if scrolling up, zoom out the camera
+            if (window.scrollY < prevScrollY) {
+                camera.position.z += 0.1;
+            }
+            prevScrollY = window.scrollY;
+        }
+
     });
 
 
