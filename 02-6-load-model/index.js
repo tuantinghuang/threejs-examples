@@ -36,17 +36,24 @@ function init() {
     //load model
     loadModel();
 }
-
+let meshes = [];
 
 function loadModel() {
     loader.load("tree_model/tree_small_02_1k.gltf", function (gltf) {
         scene.add(gltf.scene);
-        console.log(gltf);
+        meshes = gltf.scene.children;
+        console.log(gltf.scene.children);
+
     })
 }
 
 function render() {
     renderer.render(scene, camera);
+    if (meshes) {
+        meshes.forEach(mesh => {
+            mesh.rotation.y += 0.01;
+        });
+    }
     requestAnimationFrame(render);
 }
 

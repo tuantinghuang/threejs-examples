@@ -8,13 +8,13 @@ export class MyCube {
         this.mesh.position.set(x, y, z);
         scene.add(this.mesh);
 
-        this.frameCount = 0;
+
     }
 
     update(speed) {
-        this.frameCount += 0.005;
-        this.mesh.rotation.x = this.frameCount * speed;
-        this.mesh.rotation.z = this.frameCount * speed;
+
+        this.mesh.rotation.x += speed;
+        this.mesh.rotation.z += speed;
     }
 
 

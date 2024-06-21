@@ -42,7 +42,7 @@ function render() {
 
     for (let i = 0; i < cubes.length; i++) {
         let speed = i + 1;
-        cubes[i].update(speed);
+        cubes[i].update(speed * 0.001);
     }
 
     renderer.render(scene, camera);
